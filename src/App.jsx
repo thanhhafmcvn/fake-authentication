@@ -17,7 +17,7 @@ function App() {
   const routers = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<Home />} />
+        <Route path="/fake-authentication" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<ErrorPage />} />
