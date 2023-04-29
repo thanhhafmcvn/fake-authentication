@@ -73,14 +73,12 @@ const SignIn = () => {
         <h3 onClick={(e) => navigate('/signup')}>Sign up</h3>
         <button
           onClick={(e) => handleSignInWithEmailAndPassword(e)}
-          type="submit"
           className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-blue-500 rounded-lg h-[60px]"
         >
           Sign In
         </button>
         <button
           onClick={(e) => handleSignInWithGoogle(e)}
-          type="submit"
           className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-blue-500 gap-x-2 bg-transparent rounded-lg h-[60px] mt-4 border border-blue-500"
         >
           <svg

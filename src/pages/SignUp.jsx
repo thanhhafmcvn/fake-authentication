@@ -51,7 +51,6 @@ const SignUp = () => {
       </div>
       <h4 onClick={(() => navigate('/signin'))}>Sign in</h4>
       <button
-        type="submit"
         onClick={(e) => handleCreateAccount(e)}
         className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-blue-500 rounded-lg h-[60px]"
       >Create</button>
