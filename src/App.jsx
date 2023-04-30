@@ -18,8 +18,8 @@ function App() {
     createRoutesFromElements(
       <>
         <Route path="/fake-authentication" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/fake-authentication/signup" element={<SignUp />} />
+        <Route path="/fake-authentication/signin" element={<SignIn />} />
         <Route path="*" element={<ErrorPage />} />
       </>
     )

@@ -70,7 +70,7 @@ const SignIn = () => {
           />
         </div>
         <h3>Don't have account?</h3>
-        <h3 onClick={(e) => navigate('/signup')}>Sign up</h3>
+        <h3 onClick={(e) => navigate('/fake-authentication/signup')}>Sign up</h3>
         <button
           onClick={(e) => handleSignInWithEmailAndPassword(e)}
           className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-blue-500 rounded-lg h-[60px]"

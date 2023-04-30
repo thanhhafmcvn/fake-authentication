@@ -8,8 +8,8 @@ const Home = () => {
         This is the homepage of fake authentication project
       </h1>
       <div className='text-[30px] text-blue-700 font-bold'>
-        <h2 onClick={() => navigate("/signup")}>Sign up</h2>
-        <h2 onClick={() => navigate("/signin")}>Sign in</h2>
+        <h2 onClick={() => navigate("/fake-authentication/signup")}>Sign up</h2>
+        <h2 onClick={() => navigate("/fake-authentication/signin")}>Sign in</h2>
       </div>
     </div>
   );
