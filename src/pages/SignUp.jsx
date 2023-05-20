@@ -10,10 +10,11 @@ const SignUp = () => {
   const handleCreateAccount = async (e) => {
     e.preventDefault();
     if (email?.trim()?.length > 10 && email?.trim()?.includes('@') && password?.trim() == confirmPassword?.trim() && password?.trim() > 8) {
+      console.log('aa')
       const user = await createUserWithEmailAndPassword(auth, email, password)
       if (user?.user?.accessToken) {
         alert('Created account successfully');
-        navigate('/signin')
+        navigate('/fake-authentication/signin')
       }
     }
   }

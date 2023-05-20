@@ -4,37 +4,66 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  signInAnonymously,
+  FacebookAuthProvider,
 } from "firebase/auth";
-import {auth} from '../../firebase/firebase.config.js'
+import { auth } from '../../firebase/firebase.config.js'
+import  {firebaseStore }  from '../../zustand/store.js'
 const SignIn = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleSignInWithEmailAndPassword = async (e) => {
-    e.preventDefault();
-    try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      if (result?.user?.accessToken) {
-        alert("Signed in successfully");
-        navigate("/");
+    const handleSignInWithGoogle = async (e) => {
+      e.preventDefault();
+      try {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        if (result?.user?.accessToken) {
+          alert("Login Successfully");
+          navigate("/fake-authenticatoin");
+        }
+      } catch (error) {
+        alert(error.message);
       }
-    } catch (error) {
-      alert(error.message);
-    }
-  };
- const handleSignInWithGoogle = async (e) => {
-   e.preventDefault();
-   try {
-     const provider = new GoogleAuthProvider();
-     const result = await signInWithPopup(auth, provider);
-     if (result?.user?.accessToken) {
-       alert("Login Successfully");
-       navigate("/");
-     }
-   } catch (error) {
-     alert(error.message);
-   }
- };
+    };
+    const handleSignInWithFacebook = async (e) => {
+      e.preventDefault();
+      try {
+        const provider = new FacebookAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        if (result?.user?.accessToken) {
+          alert("Login successfully");
+          navigate("/fake-authentication");
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+    const handleSignInAnonymously = async (e) => {
+      e.preventDefault();
+      try {
+        const result = await signInAnonymously(auth);
+        if (result?.user) {
+          alert("Login successfully");
+          navigate("/fake-authentication");
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    const handleSignInWithEmailAndPassword = async (e) => {
+      e.preventDefault();
+      try {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        if (result.credential.accessToken) {
+          alert("Signed in successfully");
+          navigate("/fake-authentication");
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+  const { email, password, setEmail, setPassword } = firebaseStore()
+  const navigate = useNavigate();
   return (
     <div>
       <h1> This is the sign in page</h1>
@@ -70,7 +99,9 @@ const SignIn = () => {
           />
         </div>
         <h3>Don't have account?</h3>
-        <h3 onClick={(e) => navigate('/fake-authentication/signup')}>Sign up</h3>
+        <h3 onClick={(e) => navigate("/fake-authentication/signup")}>
+          Sign up
+        </h3>
         <button
           onClick={(e) => handleSignInWithEmailAndPassword(e)}
           className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-blue-500 rounded-lg h-[60px]"
@@ -107,9 +138,15 @@ const SignIn = () => {
           </svg>
           Sign In With Google
         </button>
+        <button onClick={(e) => handleSignInAnonymously(e)}>
+          Sign in anonymously
+        </button>
+        <br />
+        <button onClick={(e) => handleSignInWithFacebook(e)}>
+          Sign in with Facebook
+        </button>
       </div>
     </div>
   );
 };
-
 export default SignIn;
