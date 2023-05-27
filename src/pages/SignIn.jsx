@@ -54,6 +54,7 @@ const SignIn = () => {
         <SignInWithEmailAndPassword />
         <SignInWithGoogle />
         <SignInAnonymously />
+        <SignInWithFacebook />
       </div>
     </div>
   );
